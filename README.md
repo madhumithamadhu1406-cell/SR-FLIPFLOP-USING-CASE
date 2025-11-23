@@ -37,12 +37,31 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 /* write all the steps invloved */
 
 **PROGRAM**
-
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+module sr_ff (
+    input  wire clk, rst, S, R,
+    output reg  Q
+);
+    always @(posedge clk) begin
+        if (rst)
+            Q <= 1'b0;         // Reset
+        else begin
+            case ({S,R})
+                2'b00: Q <= Q;     // No change
+                2'b01: Q <= 1'b0;  // Reset
+                2'b10: Q <= 1'b1;  // Set
+                2'b11: Q <= 1'bx;  // Invalid
+            endcase
+        end
+    end
+endmodule
+Developed by:Madhumitha V
+Register number:25016067
 
 **RTL LOGIC FOR FLIPFLOPS**
+<img width="1919" height="1076" alt="Screenshot 2025-11-23 164813" src="https://github.com/user-attachments/assets/f4a4d2a0-a4e1-4153-a0fd-4ac00c38ba8b" />
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+<img width="1914" height="1076" alt="Screenshot 2025-11-23 165208" src="https://github.com/user-attachments/assets/1756af06-1042-4baf-860e-be878a6d7bca" />
 
 **RESULTS**
+Thus the 4 Bit Ripple Counter using verilog and validating their functionality using their functional tables is verified.
